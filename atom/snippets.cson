@@ -4,27 +4,6 @@
 #
 
 '.source.js':
-  'React Component':
-    'prefix': '_rc'
-    'body': """
-      import React, { Component, PropTypes } from \'react\';
-
-      class Foo extends Component {
-        constructor () {
-          super();
-        }
-
-        render () {
-
-        }
-      }
-
-      Foo.propTypes = {
-
-      }
-
-      export default Foo;
-    """
   'React Native Stylesheet':
     'prefix': '_rns'
     'body': """
@@ -32,4 +11,99 @@
 
       export default StyleSheet.create({
       });
+    """
+  'Reducer Test':
+    'prefix': '_rrt'
+    'body': """
+      /* global describe, it */
+      import { expect } from 'chai';
+      import ActionTypes from '~/src/libs/actionTypes/actionTypes';
+
+      describe('Foo', () => {
+        describe('Bar', () => {
+          it('Baz', () => {
+          });
+        });
+      });
+
+    """
+  'Action Creator Test':
+    'prefix': '_ract'
+    'body': """
+      /* global describe, it, beforeEach, afterEach */
+      import { expect } from 'chai';
+      import ActionTypes from '~/src/libs/actionTypes/actionTypes';
+      import configureStore from 'redux-mock-store';
+      import thunk from 'redux-thunk';
+      const mockStore = configureStore([thunk]);
+      import sinon from 'sinon';
+      import sinonStubPromise from 'sinon-stub-promise';
+      sinonStubPromise(sinon);
+      let sandbox;
+
+      describe('Foo', () => {
+        beforeEach(() => {
+          sandbox = sinon.sandbox.create();
+        });
+
+        afterEach(() => {
+          sandbox.restore();
+        });
+        describe('Bar', () => {
+          it('Baz', () => {
+            const expectedActions = [];
+
+            const store = mockStore({});
+            store.dispatch();
+            expect(store.getActions()).to.eql(expectedActions);
+          });
+        });
+      });
+
+    """
+  'React Component':
+    'prefix': '_rc'
+    'body': """
+      import React, { Component, PropTypes } from 'react';
+
+      class Foo extends Component {
+        constructor () {
+          super();
+        }
+
+        render () {
+          return ();
+        }
+      }
+
+      Foo.propTypes = {};
+
+      export default Foo;
+
+    """
+  'React Reducer':
+    'prefix': '_rr'
+    'body': """
+      import ActionTypes from '~/src/libs/actionTypes/actionTypes';``
+
+      export function foo (state = '', action) {
+        switch (action.type) {
+          case 'bar':
+            return baz;
+          default:
+            return state;
+        }
+      }
+
+    """
+  'React Action Creator':
+    'prefix': '_rac'
+    'body': """
+      import ActionTypes from '~/src/libs/actionTypes/actionTypes';
+
+      export function foo () {
+        return (dispatch, getState()) => {
+        };
+      }
+
     """
