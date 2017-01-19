@@ -1,8 +1,15 @@
-" pathogen
-execute pathogen#infect()
-
-" noncompatible with vi
+" noncompatible with vi, required for Vundle
 set nocompatible
+
+" Turn file autodetect off, required for Vundle
+  filetype off
+
+" Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
 " syntax highlighting
 syntax on 
@@ -11,9 +18,9 @@ syntax on
 set number
 
 " detect file types and load plugins
-filetype on
-filetype plugin on
-filetype indent on
+" filetype off
+" filetype plugin on
+" filetype indent on
 
 " reload files changed outside vim
 set autoread
@@ -64,3 +71,23 @@ set softtabstop=2   " 2 space tabs in insert mode
 " syntax enable
 " set background=dark
 " colorscheme solarized
+
+" General Plugins
+Plugin 'scrooloose/nerdtree'     " Directory Tree
+Plugin 'vim-scripts/l9'          " required for FuzzyFinder
+Plugin 'vim-scripts/FuzzyFinder' " Fuzzy Search
+Plugin 'itchyny/lightline.vim' " Status bar
+Plugin 'tpope/vim-surround' " Editing, deleting strings, parentheses, brackets, etc
+
+" Web Dev Plugins
+Plugin 'skammer/vim-css-color' " Hex colors
+Plugin 'mxw/vim-jsx' " JSX Syntax Highlighter
+Plugin 'cakebaker/scss-syntax.vim' " SCSS Syntax Highlighter
+
+" Include .jsx syntax highlighting in .js files
+let g:jsx_ext_required = 0
+
+
+" Key Mappings
+map <C-n> :NERDTreeToggle<CR>
+map <C-p> :FufFile<CR>
