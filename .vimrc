@@ -1,26 +1,13 @@
 " noncompatible with vi, required for Vundle
 set nocompatible
 
-" Turn file autodetect off, required for Vundle
-  filetype off
-
-" Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" syntax highlighting
-syntax on 
+" required for Vundle
+filetype off                " Turn file autodetect off,
 
 " show line numbers
 set number
 
-" detect file types and load plugins
-" filetype off
-" filetype plugin on
-" filetype indent on
+set noswapfile
 
 " reload files changed outside vim
 set autoread
@@ -67,27 +54,51 @@ set smartindent     " smarter indent for c-like languages
 set shiftwidth=2    " 2 space tabs when reading   
 set softtabstop=2   " 2 space tabs in insert mode
 
-" let g:solarized_termcolors=256
-" syntax enable
-" set background=dark
-" colorscheme solarized
+" Vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
 " General Plugins
-Plugin 'scrooloose/nerdtree'     " Directory Tree
-Plugin 'vim-scripts/l9'          " required for FuzzyFinder
-Plugin 'vim-scripts/FuzzyFinder' " Fuzzy Search
-Plugin 'itchyny/lightline.vim' " Status bar
-Plugin 'tpope/vim-surround' " Editing, deleting strings, parentheses, brackets, etc
+Plugin 'scrooloose/nerdtree'          " Directory Tree
+Plugin 'vim-scripts/l9'               " required for FuzzyFinder
+Plugin 'itchyny/lightline.vim'        " Status bar
+Plugin 'tpope/vim-surround'           " Editing, deleting strings, parentheses, brackets, etc 
+Plugin 'mileszs/ack.vim'              " Fuzzy directory search
+Plugin 'junegunn/fzf'                 " Fuzzy file search
+Plugin 'junegunn/fzf.vim'             " required for fzf
+Plugin 'rakr/vim-one'                 " Atom one dark theme
 
 " Web Dev Plugins
 Plugin 'skammer/vim-css-color' " Hex colors
 Plugin 'mxw/vim-jsx' " JSX Syntax Highlighter
 Plugin 'cakebaker/scss-syntax.vim' " SCSS Syntax Highlighter
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'kchmck/vim-coffee-script'   
 
 " Include .jsx syntax highlighting in .js files
 let g:jsx_ext_required = 0
 
+call vundle#end()            " Required
+
+" Required for coffeescript
+syntax enable               " Syntax highlighting
+filetype plugin indent on
 
 " Key Mappings
 map <C-n> :NERDTreeToggle<CR>
-map <C-p> :FufFile<CR>
+map <C-p> :FZF<CR>
+inoremap jj <ESC>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-Delete> :tabclose<CR>
+
+" Theme
+set background=dark " for the dark version
+colorscheme one
+
+" Set ack to use the_silver_surfer
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
