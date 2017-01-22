@@ -62,14 +62,15 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " General Plugins
-Plugin 'scrooloose/nerdtree'          " Directory Tree
-Plugin 'vim-scripts/l9'               " required for FuzzyFinder
-Plugin 'itchyny/lightline.vim'        " Status bar
-Plugin 'tpope/vim-surround'           " Editing, deleting strings, parentheses, brackets, etc 
-Plugin 'mileszs/ack.vim'              " Fuzzy directory search
-Plugin 'junegunn/fzf'                 " Fuzzy file search
-Plugin 'junegunn/fzf.vim'             " required for fzf
-Plugin 'rakr/vim-one'                 " Atom one dark theme
+Plugin 'scrooloose/nerdtree'             " Directory Tree
+Plugin 'vim-scripts/l9'                 " required for FuzzyFinder
+Plugin 'vim-airline/vim-airline'        " Status/tabline
+Plugin 'tpope/vim-surround'             " Editing, deleting strings, parentheses, brackets, etc 
+Plugin 'mileszs/ack.vim'                " Fuzzy directory search
+Plugin 'junegunn/fzf'                   " Fuzzy file search
+Plugin 'junegunn/fzf.vim'               " required for fzf
+Plugin 'rakr/vim-one'                   " Atom one dark theme
+Plugin 'jistr/vim-nerdtree-tabs' 
 
 " Web Dev Plugins
 Plugin 'skammer/vim-css-color' " Hex colors
@@ -81,6 +82,23 @@ Plugin 'kchmck/vim-coffee-script'
 " Include .jsx syntax highlighting in .js files
 let g:jsx_ext_required = 0
 
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" " Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+
+" Use the nearest .git directory as the cwd
+" This makes a lot of sense if you are working on a project that is in
+"  version  control. It also supports works with .svn, .hg, .bzr.
+let g:ctrlp_working_path_mode = 'r'
+
 call vundle#end()            " Required
 
 " Required for coffeescript
@@ -88,11 +106,40 @@ syntax enable               " Syntax highlighting
 filetype plugin indent on
 
 " Key Mappings
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> <plug>NERDTreeTabsToggle<CR> 
 map <C-p> :FZF<CR>
 inoremap jj <ESC>
 nnoremap <C-tab>   :tabnext<CR>
 nnoremap <C-Delete> :tabclose<CR>
+
+" This allows buffers to be hidden if you've modified a buffer.
+" " This is almost a must if you wish to use buffers in this way.
+set hidden
+
+" " To open a new empty buffer
+" " This replaces :tabnew which I used to bind to this mapping
+nmap <leader>t :enew<cr>
+
+" " Move to the next buffer
+nmap <leader>l :bnext<CR>
+
+" " Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+
+" " Close the current buffer and move to the previous one
+" " This replicates the idea of closing a tab
+nmap <leader>q :bp <BAR> bd #<CR>
+
+" " Show all open buffers and their status
+nmap <leader>bl :ls<CR>
+
+" Use a leader instead of the actual named binding
+nmap <leader>p :FZF<cr>
+
+" " Easy bindings for its various modes
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
 
 " Theme
 set background=dark " for the dark version
