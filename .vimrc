@@ -13,7 +13,7 @@ set noswapfile
 set autoread
 
 " Show matching brackets/braces/parentheses
-set showmatch
+"set showmatch
 
 " Make searches case-insensitive, unless they contain upper-case letters
 set ignorecase
@@ -53,6 +53,9 @@ set autoindent	    " autoindent based on line above
 set smartindent     " smarter indent for c-like languages
 set shiftwidth=2    " 2 space tabs when reading   
 set softtabstop=2   " 2 space tabs in insert mode
+
+" Automatically trim trailing whitespace
+autocmd BufWritePre *.py :%s/\s\+$//e
 
 " Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -121,10 +124,10 @@ set hidden
 nmap <leader>t :enew<cr>
 
 " " Move to the next buffer
-nmap <leader>l :bnext<CR>
+nmap <leader>k :bprevious<CR>
 
 " " Move to the previous buffer
-nmap <leader>h :bprevious<CR>
+nmap <leader>l :bnext<CR>
 
 " " Close the current buffer and move to the previous one
 " " This replicates the idea of closing a tab
@@ -149,3 +152,4 @@ colorscheme one
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+Bundle 'wakatime/vim-wakatime'
