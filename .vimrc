@@ -45,8 +45,6 @@ set viminfo='100,f1
 " no redraw while running macros, registers, or other non-typed comments
 set lazyredraw
 
-set guifont=Operator\ Mono
-
 " indentation
 set expandtab       " map tabs to sapces
 set autoindent	    " autoindent based on line above
@@ -65,7 +63,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " General Plugins
-Plugin 'scrooloose/nerdtree'             " Directory Tree
+Plugin 'scrooloose/nerdtree'            " Directory Tree
 Plugin 'vim-scripts/l9'                 " required for FuzzyFinder
 Plugin 'vim-airline/vim-airline'        " Status/tabline
 Plugin 'tpope/vim-surround'             " Editing, deleting strings, parentheses, brackets, etc 
@@ -108,12 +106,14 @@ call vundle#end()            " Required
 syntax enable               " Syntax highlighting
 filetype plugin indent on
 
+let mapleader=" "   " map space to leader
+
 " Key Mappings
 map <C-n> <plug>NERDTreeTabsToggle<CR> 
 map <C-p> :FZF<CR>
 inoremap jj <ESC>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-Delete> :tabclose<CR>
+" nnoremap <C-tab>   :tabnext<CR>
+" nnoremap <C-Delete> :tabclose<CR>
 
 " This allows buffers to be hidden if you've modified a buffer.
 " " This is almost a must if you wish to use buffers in this way.
@@ -124,10 +124,10 @@ set hidden
 nmap <leader>t :enew<cr>
 
 " " Move to the next buffer
-nmap <leader>k :bprevious<CR>
+nmap <leader>[ :bprevious<CR>
 
 " " Move to the previous buffer
-nmap <leader>l :bnext<CR>
+nmap <leader>] :bnext<CR>
 
 " " Close the current buffer and move to the previous one
 " " This replicates the idea of closing a tab
@@ -137,7 +137,9 @@ nmap <leader>q :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
 
 " Use a leader instead of the actual named binding
-nmap <leader>p :FZF<cr>
+nmap <leader>p :FZF<CR>
+
+nmap <leader>f :Ack! 
 
 " " Easy bindings for its various modes
 nmap <leader>bb :CtrlPBuffer<cr>
