@@ -72,6 +72,7 @@ Plugin 'junegunn/fzf'                   " Fuzzy file search
 Plugin 'junegunn/fzf.vim'               " required for fzf
 Plugin 'rakr/vim-one'                   " Atom one dark theme
 Plugin 'jistr/vim-nerdtree-tabs' 
+Plugin 'SirVer/ultisnips'               " Snippets
 
 " Web Dev Plugins
 Plugin 'skammer/vim-css-color' " Hex colors
@@ -145,6 +146,11 @@ nmap <leader>f :Ack!
 nmap <leader>bb :CtrlPBuffer<cr>
 nmap <leader>bm :CtrlPMixed<cr>
 nmap <leader>bs :CtrlPMRU<cr>
+
+" Ultisnips bindings
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Theme
 set background=dark " for the dark version
