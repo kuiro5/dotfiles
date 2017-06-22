@@ -4,6 +4,9 @@
 " noncompatible with vi, required for Vundle
 set nocompatible
 
+" use system clipboard
+set clipboard=unnamed
+
 " required for Vundle
 filetype off                " Turn file autodetect off,
 
@@ -13,7 +16,7 @@ set number
 set noswapfile
 
 " reload files changed outside vim
-set autoread
+" set autoread
 
 " Show matching brackets/braces/parentheses
 "set showmatch
@@ -75,7 +78,6 @@ Plugin 'junegunn/fzf'                   " Fuzzy file search
 Plugin 'junegunn/fzf.vim'               " required for fzf
 Plugin 'rakr/vim-one'                   " Atom one dark theme
 Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'SirVer/ultisnips'               " Snippets
 Plugin 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
 
 " Web Dev Plugins
@@ -152,6 +154,8 @@ nmap <leader>f :Ack!
 nmap <leader>bb :CtrlPBuffer<cr>
 nmap <leader>bm :CtrlPMixed<cr>
 nmap <leader>bs :CtrlPMRU<cr>
+
+nmap <leader>r :SyntasticReset<CR>
 
 " Ultisnips bindings
 let g:UltiSnipsExpandTrigger="<tab>"
