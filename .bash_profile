@@ -115,3 +115,9 @@ PS1+="\[\$(git_color)\]"        # colors git status
 PS1+="\$(git_branch)"           # prints current branch
 PS1+="\[$COLOR_BLUE\]\$\[$COLOR_RESET\] "   # '#' for root, else '$'
 export PS1
+
+function tab_title {
+  echo -n -e "\033]0;${PWD##*/}\007"
+}
+
+PROMPT_COMMAND="tab_title ; $PROMPT_COMMAND"
