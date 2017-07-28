@@ -88,6 +88,22 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdcommenter'
+"Plugin 'ervandew/supertab'
+"Plugin 'Valloric/YouCompleteMe'
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger="<cr>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " Include .jsx syntax highlighting in .js files
 let g:jsx_ext_required = 0
@@ -121,28 +137,28 @@ let mapleader=" "   " map space to leader
 map <C-n> <plug>NERDTreeTabsToggle<CR>
 map <C-p> :FZF<CR>
 inoremap jj <ESC>
-" nnoremap <C-tab>   :tabnext<CR>
-" nnoremap <C-Delete> :tabclose<CR>
+" nmap <C-tab>   :tabnext<CR>
+" nmap <C-Delete> :tabclose<CR>
 
 " This allows buffers to be hidden if you've modified a buffer.
 " " This is almost a must if you wish to use buffers in this way.
 set hidden
 
-" " To open a new empty buffer
-" " This replaces :tabnew which I used to bind to this mapping
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
 nmap <leader>t :enew<cr>
 
-" " Move to the next buffer
+" Move to the next buffer
 nmap <Tab> :bnext<CR>
 
-" " Move to the previous buffer
+" Move to the previous buffer
 nmap <S-Tab> :bprevious<CR>
 
-" " Close the current buffer and move to the previous one
-" " This replicates the idea of closing a tab
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
 nmap <leader>q :bp <BAR> bd #<CR>
 
-" " Show all open buffers and their status
+" Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
 " Use a leader instead of the actual named binding
@@ -150,19 +166,41 @@ nmap <leader>p :FZF<CR>
 
 nmap <leader>f :Ack!
 
-" " Easy bindings for its various modes
+" Easy bindings for its various modes
 nmap <leader>bb :CtrlPBuffer<cr>
 nmap <leader>bm :CtrlPMixed<cr>
 nmap <leader>bs :CtrlPMRU<cr>
 
 nmap <leader>r :SyntasticReset<CR>
 
-" Ultisnips bindings
+" Better pasting
+nmap <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
+
+" Easier split navigation
+nmap <C-J> <C-W><C-J>
+nmap <C-K> <C-W><C-K>
+nmap <C-L> <C-W><C-L>
+nmap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
+
+" Ultisnips Bindings
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"let g:UltiSnipsExpandTrigger='<cr>'
+"let g:UltiSnipsJumpForwardTrigger='<c-j>'
+"let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+let g:UltiSnipsSnippetsDir='~/.vim/custom_snippets'
+let g:UltiSnipsSnippetDirectories=['custom_snippets']
 
-" Eslint
+" YouCompleteMe Bindings
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -181,4 +219,5 @@ colorscheme one
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
+
 Bundle 'wakatime/vim-wakatime'
