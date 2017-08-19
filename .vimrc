@@ -82,6 +82,7 @@ Plugin 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
 
 " Web Dev Plugins
 Plugin 'skammer/vim-css-color' " Hex colors
+Plugin 'pangloss/vim-javascript' " Javascript Highlighter
 Plugin 'mxw/vim-jsx' " JSX Syntax Highlighter
 Plugin 'cakebaker/scss-syntax.vim' " SCSS Syntax Highlighter
 Plugin 'vim-ruby/vim-ruby'
@@ -89,9 +90,10 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
 Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'Shougo/neocomplete.vim'
 "Plugin 'ervandew/supertab'
 "Plugin 'Valloric/YouCompleteMe'
 
@@ -211,9 +213,46 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 
+" Neocomplete
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" vim-jsx
+let g:jsx_ext_required = 0
+
 " Theme
 set background=dark " for the dark version
-colorscheme one
+"colorscheme one
+let g:one_allow_italics = 1
 
 " Set ack to use the_silver_surfer
 if executable('ag')
@@ -221,3 +260,12 @@ if executable('ag')
 endif
 
 Bundle 'wakatime/vim-wakatime'
+
+
+" Required for Operator Mono
+hi htmlArg gui=italic
+hi htmlArg cterm=italic
+hi Comment gui=italic
+hi Comment cterm=italic
+hi Type    gui=italic
+hi Type    cterm=italic
