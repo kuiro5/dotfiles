@@ -15,12 +15,6 @@ set number
 
 set noswapfile
 
-" reload files changed outside vim
-" set autoread
-
-" Show matching brackets/braces/parentheses
-"set showmatch
-
 " Make searches case-insensitive, unless they contain upper-case letters
 set ignorecase
 set smartcase
@@ -72,6 +66,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'            " Directory Tree
 Plugin 'vim-scripts/l9'                 " required for FuzzyFinder
 Plugin 'vim-airline/vim-airline'        " Status/tabline
+Plugin 'vim-airline/vim-airline-themes' " Status/tabline themes
 Plugin 'tpope/vim-surround'             " Editing, deleting strings, parentheses, brackets, etc
 Plugin 'mileszs/ack.vim'                " Fuzzy directory search
 Plugin 'junegunn/fzf'                   " Fuzzy file search
@@ -79,6 +74,7 @@ Plugin 'junegunn/fzf.vim'               " required for fzf
 Plugin 'rakr/vim-one'                   " Atom one dark theme
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
+Plugin 'tpope/vim-unimpaired'
 
 " Web Dev Plugins
 Plugin 'skammer/vim-css-color' " Hex colors
@@ -89,32 +85,28 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
-Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Shougo/neocomplete.vim'
-"Plugin 'ervandew/supertab'
-"Plugin 'Valloric/YouCompleteMe'
+Plugin 'wakatime/vim-wakatime'
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger="<cr>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+call vundle#end()            " Required
 
 " Include .jsx syntax highlighting in .js files
 let g:jsx_ext_required = 0
 
-" Enable the list of buffers
+" Airline
 let g:airline#extensions#tabline#enabled = 1
-
-" " Show just the filename
+set laststatus=2
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+let g:airline_theme='solarized'
+"let g:airline_solarized_bg='dark'
+
 
 " Setup some default ignores
 let g:ctrlp_custom_ignore = {
@@ -123,11 +115,7 @@ let g:ctrlp_custom_ignore = {
 \}
 
 " Use the nearest .git directory as the cwd
-" This makes a lot of sense if you are working on a project that is in
-"  version  control. It also supports works with .svn, .hg, .bzr.
 let g:ctrlp_working_path_mode = 'r'
-
-call vundle#end()            " Required
 
 " Required for coffeescript
 syntax enable               " Syntax highlighting
@@ -136,11 +124,11 @@ filetype plugin indent on
 let mapleader=" "   " map space to leader
 
 " Key Mappings
-map <C-n> <plug>NERDTreeTabsToggle<CR>
+nmap <leader>nt :NERDTreeTabsToggle<CR>
+nmap <leader>nf :NERDTreeFind<CR>
+
 map <C-p> :FZF<CR>
 inoremap jj <ESC>
-" nmap <C-tab>   :tabnext<CR>
-" nmap <C-Delete> :tabclose<CR>
 
 " This allows buffers to be hidden if you've modified a buffer.
 " " This is almost a must if you wish to use buffers in this way.
@@ -149,12 +137,6 @@ set hidden
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
 nmap <leader>t :enew<cr>
-
-" Move to the next buffer
-nmap <Tab> :bnext<CR>
-
-" Move to the previous buffer
-nmap <S-Tab> :bprevious<CR>
 
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
@@ -168,15 +150,7 @@ nmap <leader>p :FZF<CR>
 
 nmap <leader>f :Ack!
 
-" Easy bindings for its various modes
-nmap <leader>bb :CtrlPBuffer<cr>
-nmap <leader>bm :CtrlPMixed<cr>
-nmap <leader>bs :CtrlPMRU<cr>
-
 nmap <leader>r :SyntasticReset<CR>
-
-" Better pasting
-nmap <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
 " Easier split navigation
 nmap <C-J> <C-W><C-J>
@@ -186,22 +160,7 @@ nmap <C-H> <C-W><C-H>
 
 set splitbelow
 set splitright
-
-" Ultisnips Bindings
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-"let g:UltiSnipsExpandTrigger='<cr>'
-"let g:UltiSnipsJumpForwardTrigger='<c-j>'
-"let g:UltiSnipsJumpBackwardTrigger='<c-k>'
-let g:UltiSnipsSnippetsDir='~/.vim/custom_snippets'
-let g:UltiSnipsSnippetDirectories=['custom_snippets']
-
-" YouCompleteMe Bindings
-"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-"let g:SuperTabDefaultCompletionType = '<C-n>'
-
+"
 " Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -223,7 +182,7 @@ let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 
-" Recommended key-mappings.
+" Neocomplete keymappings
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
@@ -246,9 +205,6 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" vim-jsx
-let g:jsx_ext_required = 0
-
 " Theme
 set background=dark " for the dark version
 "colorscheme one
@@ -258,9 +214,6 @@ let g:one_allow_italics = 1
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-
-Bundle 'wakatime/vim-wakatime'
-
 
 " Required for Operator Mono
 hi htmlArg gui=italic
