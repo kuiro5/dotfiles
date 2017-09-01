@@ -75,6 +75,7 @@ Plugin 'rakr/vim-one'                   " Atom one dark theme
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
 Plugin 'tpope/vim-unimpaired'
+Plugin 'vim-scripts/AutoClose'
 
 " Web Dev Plugins
 Plugin 'skammer/vim-css-color' " Hex colors
