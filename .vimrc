@@ -7,8 +7,8 @@ set nocompatible
 " use system clipboard
 set clipboard=unnamed
 
-" required for Vundle
-filetype off                " Turn file autodetect off,
+" turn file autodetect off, required for Vundle
+filetype off
 
 " show line numbers
 set number
@@ -79,6 +79,7 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
 Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-scripts/AutoClose'
+Plugin 'ludovicchabant/vim-gutentags'
 
 " Web Dev Plugins
 Plugin 'skammer/vim-css-color' " Hex colors
@@ -94,6 +95,7 @@ Plugin 'scrooloose/nerdcommenter'
 "Plugin 'Shougo/neocomplete.vim'
 Plugin 'Shougo/deoplete.nvim'
 Plugin 'wakatime/vim-wakatime'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()            " Required
 
