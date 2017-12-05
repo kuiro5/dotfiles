@@ -99,6 +99,21 @@ Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()            " Required
 
+" Plug - used for Prettier
+call plug#begin()
+
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+call plug#end()
+
+" Prettier
+let g:prettier#exec_cmd_async = 1
+let g:prettier#autoformat = 0
+let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#jsx_bracket_same_line = 'false'
+let g:prettier#config#parser = 'babylon'
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+"
 " Include .jsx syntax highlighting in .js files
 let g:jsx_ext_required = 0
 
