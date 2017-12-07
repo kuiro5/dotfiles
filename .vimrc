@@ -80,6 +80,7 @@ Plugin 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
 Plugin 'tpope/vim-unimpaired'
 Plugin 'vim-scripts/AutoClose'
 Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'eugen0329/vim-esearch'
 
 " Web Dev Plugins
 Plugin 'skammer/vim-css-color' " Hex colors
@@ -203,6 +204,15 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Esearch
+let g:esearch = {
+      \ 'adapter':    'ag',
+      \ 'backend':    'nvim',
+      \ 'out':        'win',
+      \ 'batch_size': 1000,
+      \ 'use':        ['visual', 'hlsearch', 'last'],
+      \}
 
 " Theme
 set background=dark " for the dark version
