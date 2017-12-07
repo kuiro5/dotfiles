@@ -58,62 +58,53 @@ set softtabstop=2   " 2 space tabs in insert mode
 " Automatically trim trailing whitespace
 autocmd BufEnter * EnableStripWhitespaceOnSave
 
-" Vundle
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Plug - used for Prettier
+call plug#begin('~/.local/share/nvim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " General Plugins
-Plugin 'scrooloose/nerdtree'            " Directory Tree
-Plugin 'vim-scripts/l9'                 " required for FuzzyFinder
-Plugin 'vim-airline/vim-airline'        " Status/tabline
-Plugin 'vim-airline/vim-airline-themes' " Status/tabline themes
-Plugin 'tpope/vim-surround'             " Editing, deleting strings, parentheses, brackets, etc
-Plugin 'mileszs/ack.vim'                " Fuzzy directory search
-Plugin 'junegunn/fzf'                   " Fuzzy file search
-Plugin 'junegunn/fzf.vim'               " required for fzf
-Plugin 'rakr/vim-one'                   " Atom one dark theme
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
-Plugin 'tpope/vim-unimpaired'
-Plugin 'vim-scripts/AutoClose'
-Plugin 'ludovicchabant/vim-gutentags'
-Plugin 'eugen0329/vim-esearch'
+Plug 'scrooloose/nerdtree'            " Directory Tree
+Plug 'vim-scripts/l9'                 " required for FuzzyFinder
+Plug 'vim-airline/vim-airline'        " Status/tabline
+Plug 'vim-airline/vim-airline-themes' " Status/tabline themes
+Plug 'tpope/vim-surround'             " Editing, deleting strings, parentheses, brackets, etc
+Plug 'mileszs/ack.vim'                " Fuzzy directory search
+Plug 'junegunn/fzf'                   " Fuzzy file search
+Plug 'junegunn/fzf.vim'               " required for fzf
+Plug 'rakr/vim-one'                   " Atom one dark theme
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-scripts/AutoClose'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'eugen0329/vim-esearch'
 
-" Web Dev Plugins
-Plugin 'skammer/vim-css-color' " Hex colors
-Plugin 'pangloss/vim-javascript' " Javascript Highlighter
-Plugin 'mxw/vim-jsx' " JSX Syntax Highlighter
-Plugin 'cakebaker/scss-syntax.vim' " SCSS Syntax Highlighter
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'mtscout6/syntastic-local-eslint.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdcommenter'
-"Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'wakatime/vim-wakatime'
-Plugin 'airblade/vim-gitgutter'
-
-call vundle#end()            " Required
-
-" Plug - used for Prettier
-call plug#begin()
-
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+" Web Dev Plugs
+Plug 'skammer/vim-css-color' " Hex colors
+Plug 'pangloss/vim-javascript' " Javascript Highlighter
+Plug 'mxw/vim-jsx' " JSX Syntax Highlighter
+Plug 'cakebaker/scss-syntax.vim' " SCSS Syntax Highlighter
+Plug 'vim-ruby/vim-ruby'
+Plug 'kchmck/vim-coffee-script'
+Plug 'vim-syntastic/syntastic'
+Plug 'mtscout6/syntastic-local-eslint.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdcommenter'
+"Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'wakatime/vim-wakatime'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
 " Prettier
-let g:prettier#exec_cmd_async = 1
-let g:prettier#autoformat = 0
-let g:prettier#config#bracket_spacing = 'true'
-let g:prettier#config#jsx_bracket_same_line = 'false'
-let g:prettier#config#parser = 'babylon'
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+"let g:prettier#exec_cmd_async = 1
+"let g:prettier#autoformat = 0
+"let g:prettier#config#bracket_spacing = 'true'
+"let g:prettier#config#jsx_bracket_same_line = 'false'
+"let g:prettier#config#parser = 'babylon'
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
 "
 " Include .jsx syntax highlighting in .js files
 let g:jsx_ext_required = 0
@@ -163,6 +154,9 @@ nmap <leader>t :enew<cr>
 
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
+nmap <leader>q :bp <BAR> bd #<CR>
+nmap <leader>qq bd <CR>
+
 nmap <leader>q :bp <BAR> bd #<CR>
 
 " Show all open buffers and their status
