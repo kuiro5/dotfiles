@@ -138,8 +138,8 @@ filetype plugin indent on
 let mapleader=" "   " map space to leader
 
 " Key Mappings
-nmap <leader>nt :NERDTreeTabsToggle<CR>
-nmap <leader>nf :NERDTreeFind<CR>
+nmap <leader>pt :NERDTreeTabsToggle<CR>
+nmap <leader>pf :NERDTreeFind<CR>
 
 map <C-p> :FZF<CR>
 inoremap jj <ESC>
@@ -203,7 +203,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 let g:esearch = {
       \ 'adapter':    'ag',
       \ 'backend':    'nvim',
-      \ 'out':        'win',
+      \ 'out':        'qflist',
       \ 'batch_size': 1000,
       \ 'use':        ['visual', 'hlsearch', 'last'],
       \}
