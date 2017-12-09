@@ -87,8 +87,7 @@ Plug 'mxw/vim-jsx' " JSX Syntax Highlighter
 Plug 'cakebaker/scss-syntax.vim' " SCSS Syntax Highlighter
 Plug 'vim-ruby/vim-ruby'
 Plug 'kchmck/vim-coffee-script'
-Plug 'vim-syntastic/syntastic'
-Plug 'mtscout6/syntastic-local-eslint.vim'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'Shougo/neocomplete.vim'
@@ -121,16 +120,6 @@ let g:airline_symbols.space = "\ua0"
 let g:airline_theme='solarized'
 "let g:airline_solarized_bg='dark'
 
-
-" Setup some default ignores
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-\}
-
-" Use the nearest .git directory as the cwd
-let g:ctrlp_working_path_mode = 'r'
-
 " Required for coffeescript
 syntax enable               " Syntax highlighting
 filetype plugin indent on
@@ -155,19 +144,21 @@ nmap <leader>t :enew<cr>
 " Close the current buffer and move to the previous one
 " This replicates the idea of closing a tab
 nmap <leader>q :bp <BAR> bd #<CR>
-nmap <leader>qq bd <CR>
+nmap <leader>qq :bd <CR>
 
 nmap <leader>q :bp <BAR> bd #<CR>
 
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
+" Close quickfix window
+nmap <leader>c :ccl<CR>
+
 " Use a leader instead of the actual named binding
 nmap <leader>p :FZF<CR>
 
 nmap <leader>f :Ack!
 
-nmap <leader>r :SyntasticReset<CR>
 
 " Easier split navigation
 nmap <C-J> <C-W><C-J>
@@ -177,17 +168,9 @@ nmap <C-H> <C-W><C-H>
 
 set splitbelow
 set splitright
-"
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
+
+" Ale
+let g:ale_completion_enabled = 1
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -223,5 +206,3 @@ hi htmlArg gui=italic
 hi htmlArg cterm=italic
 hi Comment gui=italic
 hi Comment cterm=italic
-hi Type    gui=italic
-hi Type    cterm=italic
