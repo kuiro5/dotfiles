@@ -55,8 +55,9 @@ set smartindent     " smarter indent for c-like languages
 set shiftwidth=2    " 2 space tabs when reading
 set softtabstop=2   " 2 space tabs in insert mode
 
-" Automatically trim trailing whitespace
-autocmd BufEnter * EnableStripWhitespaceOnSave
+" Autocmds
+autocmd BufEnter * EnableStripWhitespaceOnSave  " trim whitespace on save
+autocmd BufWritePost .vimrc source $MYVIMRC     " source .vimrc on save
 
 " Plug - used for Prettier
 call plug#begin('~/.local/share/nvim/plugged')
@@ -69,16 +70,18 @@ Plug 'vim-scripts/l9'                 " required for FuzzyFinder
 Plug 'vim-airline/vim-airline'        " Status/tabline
 Plug 'vim-airline/vim-airline-themes' " Status/tabline themes
 Plug 'tpope/vim-surround'             " Editing, deleting strings, parentheses, brackets, etc
-Plug 'mileszs/ack.vim'                " Fuzzy directory search
-Plug 'junegunn/fzf'                   " Fuzzy file search
-Plug 'junegunn/fzf.vim'               " required for fzf
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'rakr/vim-one'                   " Atom one dark theme
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/AutoClose'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'eugen0329/vim-esearch'
+Plug 'qpkorr/vim-bufkill'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
 
 " Web Dev Plugs
 Plug 'skammer/vim-css-color' " Hex colors
@@ -89,8 +92,8 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'kchmck/vim-coffee-script'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'scrooloose/nerdcommenter'
-"Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/deoplete.nvim'
 Plug 'wakatime/vim-wakatime'
 Plug 'airblade/vim-gitgutter'
@@ -130,7 +133,12 @@ let mapleader=" "   " map space to leader
 nmap <leader>pt :NERDTreeTabsToggle<CR>
 nmap <leader>pf :NERDTreeFind<CR>
 
-map <C-p> :FZF<CR>
+" FZF
+map <C-b> :Buffers<CR>
+map <C-f> :Ag<CR>
+map <C-p> :Files<CR>
+map <C-t> :Tags<CR>
+
 inoremap jj <ESC>
 
 " This allows buffers to be hidden if you've modified a buffer.
@@ -141,12 +149,8 @@ set hidden
 " This replaces :tabnew which I used to bind to this mapping
 nmap <leader>t :enew<cr>
 
-" Close the current buffer and move to the previous one
-" This replicates the idea of closing a tab
-nmap <leader>q :bp <BAR> bd #<CR>
-nmap <leader>qq :bd <CR>
-
-nmap <leader>q :bp <BAR> bd #<CR>
+" Buffers
+nmap <leader>q :BD<CR>  " bufkill - close buffer without closing window
 
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
@@ -156,9 +160,6 @@ nmap <leader>c :ccl<CR>
 
 " Use a leader instead of the actual named binding
 nmap <leader>p :FZF<CR>
-
-nmap <leader>f :Ack!
-
 
 " Easier split navigation
 nmap <C-J> <C-W><C-J>
@@ -181,15 +182,6 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Esearch
-let g:esearch = {
-      \ 'adapter':    'ag',
-      \ 'backend':    'nvim',
-      \ 'out':        'qflist',
-      \ 'batch_size': 1000,
-      \ 'use':        ['visual', 'hlsearch', 'last'],
-      \}
 
 " Theme
 set background=dark " for the dark version
