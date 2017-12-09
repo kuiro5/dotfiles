@@ -57,7 +57,7 @@ set softtabstop=2   " 2 space tabs in insert mode
 
 " Autocmds
 autocmd BufEnter * EnableStripWhitespaceOnSave  " trim whitespace on save
-autocmd BufWritePost .vimrc source $MYVIMRC     " source .vimrc on save
+"autocmd BufWritePost .vimrc source $MYVIMRC     " source .vimrc on save
 
 " Plug - used for Prettier
 call plug#begin('~/.local/share/nvim/plugged')
@@ -82,6 +82,8 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'maxbrunsfeld/vim-yankstack'
 
 " Web Dev Plugs
 Plug 'skammer/vim-css-color' " Hex colors
@@ -136,6 +138,7 @@ nmap <leader>pf :NERDTreeFind<CR>
 " FZF
 map <C-b> :Buffers<CR>
 map <C-f> :Ag<CR>
+map <C-h> :History<CR>
 map <C-p> :Files<CR>
 map <C-t> :Tags<CR>
 
@@ -150,16 +153,13 @@ set hidden
 nmap <leader>t :enew<cr>
 
 " Buffers
-nmap <leader>q :BD<CR>  " bufkill - close buffer without closing window
+nmap <leader>bd :BD<CR>  " bufkill - close buffer without closing window
 
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
 " Close quickfix window
 nmap <leader>c :ccl<CR>
-
-" Use a leader instead of the actual named binding
-nmap <leader>p :FZF<CR>
 
 " Easier split navigation
 nmap <C-J> <C-W><C-J>
@@ -182,6 +182,27 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Needed for vim-multiple-curosrs,
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+    if exists('g:deoplete#disable_auto_complete')
+           let g:deoplete#disable_auto_complete = 1
+    endif
+endfunction
+
+" Needed for vim-multiple-curosrs,
+" Called once right before you start selecting multiple cursors
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+    if exists('g:deoplete#disable_auto_complete')
+           let g:deoplete#disable_auto_complete = 0
+    endif
+endfunction
+
+"
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " Theme
 set background=dark " for the dark version
