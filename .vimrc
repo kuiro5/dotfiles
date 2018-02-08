@@ -102,6 +102,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim'
 Plug 'wakatime/vim-wakatime'
 Plug 'airblade/vim-gitgutter'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
 
@@ -144,6 +145,7 @@ map <C-f> :Ag<CR>
 map <C-m> :History<CR>
 map <C-p> :Files<CR>
 map <C-t> :Tags<CR>
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 inoremap jj <ESC>
 
