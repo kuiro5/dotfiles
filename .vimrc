@@ -26,6 +26,9 @@ set smartcase
 set encoding=utf-8
 set fileencoding=utf-8
 
+" set tab width to 2
+set tabstop=2
+
 " enable matchit plugin, ships with vim and enhances '%'
 runtime macros/matchit.vim
 
@@ -138,7 +141,7 @@ nmap <leader>pf :NERDTreeFind<CR>
 " FZF
 map <C-b> :Buffers<CR>
 map <C-f> :Ag<CR>
-map <C-h> :History<CR>
+map <C-m> :History<CR>
 map <C-p> :Files<CR>
 map <C-t> :Tags<CR>
 
