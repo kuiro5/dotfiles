@@ -87,6 +87,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'AndrewRadev/splitjoin'
 
 " Web Dev Plugs
 Plug 'skammer/vim-css-color' " Hex colors
