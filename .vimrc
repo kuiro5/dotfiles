@@ -220,6 +220,10 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+" 80 Character Color Column
+set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
 " Required for Operator Mono
 hi htmlArg gui=italic
 hi htmlArg cterm=italic
