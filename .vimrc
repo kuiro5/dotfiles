@@ -87,7 +87,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'AndrewRadev/splitjoin'
+Plug 'andrewradev/splitjoin.vim'
 
 " Web Dev Plugs
 Plug 'skammer/vim-css-color' " Hex colors
@@ -104,6 +104,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'wakatime/vim-wakatime'
 Plug 'airblade/vim-gitgutter'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'elixir-editors/vim-elixir'
 
 call plug#end()
 
