@@ -105,6 +105,7 @@ Plug 'wakatime/vim-wakatime'
 Plug 'airblade/vim-gitgutter'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'elixir-editors/vim-elixir'
+Plug 'fatih/vim-go'
 
 call plug#end()
 
