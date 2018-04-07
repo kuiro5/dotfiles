@@ -65,8 +65,6 @@ autocmd BufEnter * EnableStripWhitespaceOnSave  " trim whitespace on save
 " Plug - used for Prettier
 call plug#begin('~/.local/share/nvim/plugged')
 
-"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-
 " General Plugins
 Plug 'scrooloose/nerdtree'            " Directory Tree
 Plug 'vim-scripts/l9'                 " required for FuzzyFinder
@@ -88,6 +86,7 @@ Plug 'tpope/vim-endwise'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'andrewradev/splitjoin.vim'
+Plug 'easymotion/vim-easymotion'
 
 " Web Dev Plugs
 Plug 'skammer/vim-css-color' " Hex colors
@@ -110,13 +109,13 @@ Plug 'fatih/vim-go'
 call plug#end()
 
 " Prettier
-"let g:prettier#exec_cmd_async = 1
-"let g:prettier#autoformat = 0
-"let g:prettier#config#bracket_spacing = 'true'
-"let g:prettier#config#jsx_bracket_same_line = 'false'
-"let g:prettier#config#parser = 'babylon'
-"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
-"
+let g:prettier#exec_cmd_async = 1
+let g:prettier#autoformat = 0
+let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#jsx_bracket_same_line = 'false'
+let g:prettier#config#parser = 'babylon'
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+
 " Include .jsx syntax highlighting in .js files
 let g:jsx_ext_required = 0
 
