@@ -86,6 +86,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'Asheq/close-buffers.vim'
 
 " Web Dev Plugs
 Plug 'skammer/vim-css-color' " Hex colors
@@ -160,7 +161,9 @@ set hidden
 nmap <leader>t :enew<cr>
 
 " Buffers
-nmap <leader>bd :BD<CR>  " bufkill - close buffer without closing window
+nmap <leader>bd :BD<CR>                   " bufkill - close buffer without closing window
+nmap <leader>bd! :bd!<CR>                 " close without saving changes
+nmap <leader>bdo :CloseOtherBuffers<CR>   " close other buffers
 
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
