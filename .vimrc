@@ -60,7 +60,6 @@ set softtabstop=2   " 2 space tabs in insert mode
 
 " Autocmds
 autocmd BufEnter * EnableStripWhitespaceOnSave  " trim whitespace on save
-"autocmd BufWritePost .vimrc source $MYVIMRC     " source .vimrc on save
 
 " Plug - used for Prettier
 call plug#begin('~/.local/share/nvim/plugged')
@@ -77,7 +76,7 @@ Plug 'rakr/vim-one'                   " Atom one dark theme
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-scripts/AutoClose'
+Plug 'jiangmiao/auto-pairs'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-eunuch'
@@ -190,7 +189,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" Needed for vim-multiple-curosrs,
+" Needed for vim-multiple-cursors,
 " Called once right before you start selecting multiple cursors
 function! Multiple_cursors_before()
     if exists('g:deoplete#disable_auto_complete')
@@ -198,7 +197,7 @@ function! Multiple_cursors_before()
     endif
 endfunction
 
-" Needed for vim-multiple-curosrs,
+" Needed for vim-multiple-cursors,
 " Called once right before you start selecting multiple cursors
 " Called once only when the multiple selection is canceled (default <Esc>)
 function! Multiple_cursors_after()
