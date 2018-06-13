@@ -136,9 +136,10 @@ filetype plugin indent on
 
 let mapleader=" "   " map space to leader
 
-" Key Mappings
+" NERDTree
 nmap <leader>pt :NERDTreeTabsToggle<CR>
 nmap <leader>pf :NERDTreeFind<CR>
+let g:NERDTreeWinPos = 'right'
 
 " FZF
 map <C-b> :Buffers<CR>
@@ -172,6 +173,9 @@ nmap <C-J> <C-W><C-J>
 nmap <C-K> <C-W><C-K>
 nmap <C-L> <C-W><C-L>
 nmap <C-H> <C-W><C-H>
+
+" Remove highlighting on ESC
+nnoremap <esc> :noh<return><esc>
 
 set splitbelow
 set splitright
