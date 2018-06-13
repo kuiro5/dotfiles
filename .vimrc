@@ -216,8 +216,11 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " Theme
 set background=dark " for the dark version
-"colorscheme one
+
 let g:one_allow_italics = 1
+
+" Change color for matching parens
+hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=#eee8d5 guifg=NONE
 
 " Set ack to use the_silver_surfer
 if executable('ag')
