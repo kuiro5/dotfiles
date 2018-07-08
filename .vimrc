@@ -1,19 +1,18 @@
 " Josh Kuiros
 " .vimrc
 
-" noncompatible with vi, required for Vundle
 set nocompatible
 
-" use system clipboard
+" Use system clipboard
 set clipboard=unnamed
 
-" turn file autodetect off, required for Vundle
+" Turn file autodetect off, required for Vundle
 filetype off
 
-" show line numbers
+" Show line numbers
 set number
 
-" show relative line numbers
+" Show relative line numbers
 set relativenumber
 
 set noswapfile
@@ -22,36 +21,37 @@ set noswapfile
 set ignorecase
 set smartcase
 
-" encoding is utf-8
+" Encoding is utf-8
 set encoding=utf-8
 set fileencoding=utf-8
 
-" set tab width to 2
+" Set tab width to 2
 set tabstop=2
 
-" enable matchit plugin, ships with vim and enhances '%'
+" Enable matchit plugin, ships with vim and enhances '%'
+" Required for vim-textobj-rubyblock
 runtime macros/matchit.vim
 
-" automatically delete line breaks or automatically inserted
-" identation on insert mode backspace
+" Automatically delete line breaks or automatically inserted
+" Identation on insert mode backspace
 set backspace=indent,eol,start
 
-" don't unload buffers when they are abandoned, stay in background
+" Don't unload buffers when they are abandoned, stay in background
 set hidden
 
-" set unix line endings
+" Set unix line endings
 set fileformat=unix
 
-" unix for new bufferes and fallback line endings to dos
+" Unix for new bufferes and fallback line endings to dos
 set fileformats=unix,dos
 
-" save up to 100 marks, enable capital marks
+" Save up to 100 marks, enable capital marks
 set viminfo='100,f1
 
-" no redraw while running macros, registers, or other non-typed comments
+" No redraw while running macros, registers, or other non-typed comments
 set lazyredraw
 
-" indentation
+" Indentation
 set expandtab       " map tabs to sapces
 set autoindent	    " autoindent based on line above
 set smartindent     " smarter indent for c-like languages
@@ -105,6 +105,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'elixir-editors/vim-elixir'
 Plug 'fatih/vim-go'
+Plug 'kana/vim-textobj-user' " Required for vim-textobj-rubyblock
+Plug 'nelstrom/vim-textobj-rubyblock'
 
 call plug#end()
 
@@ -129,7 +131,6 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.space = "\ua0"
 let g:airline_theme='solarized'
-"let g:airline_solarized_bg='dark'
 
 " Required for coffeescript
 syntax enable               " Syntax highlighting
@@ -153,7 +154,7 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : 
 inoremap jj <ESC>
 
 " This allows buffers to be hidden if you've modified a buffer.
-" " This is almost a must if you wish to use buffers in this way.
+" This is almost a must if you wish to use buffers in this way.
 set hidden
 
 " To open a new empty buffer
@@ -213,7 +214,6 @@ function! Multiple_cursors_after()
     endif
 endfunction
 
-"
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
@@ -233,6 +233,10 @@ endif
 " 80 Character Color Column
 set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+" Markdown Soft Wrap Lines
+ autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+ autocmd BufRead,BufNewFile *.md setlocal formatoptions+=t
 
 " Required for Operator Mono
 hi htmlArg gui=italic
