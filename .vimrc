@@ -58,6 +58,9 @@ set smartindent     " smarter indent for c-like languages
 set shiftwidth=2    " 2 space tabs when reading
 set softtabstop=2   " 2 space tabs in insert mode
 
+" Spell check
+set spell spelllang=en_us
+
 " Autocmds
 autocmd BufEnter * EnableStripWhitespaceOnSave  " trim whitespace on save
 
