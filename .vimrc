@@ -25,9 +25,6 @@ set smartcase
 set encoding=utf-8
 set fileencoding=utf-8
 
-" Set tab width to 2
-set tabstop=2
-
 " Enable matchit plugin, ships with vim and enhances '%'
 " Required for vim-textobj-rubyblock
 runtime macros/matchit.vim
@@ -57,6 +54,13 @@ set autoindent	    " autoindent based on line above
 set smartindent     " smarter indent for c-like languages
 set shiftwidth=2    " 2 space tabs when reading
 set softtabstop=2   " 2 space tabs in insert mode
+set tabstop=2       " Set tab width to 2
+
+" Python Identation
+au BufNewFile,BufRead *.py
+      \ set tabstop=4
+      \ set softtabstop=4
+      \ set shiftwidth=4
 
 " Spell check
 " set spell spelllang=en_us
@@ -111,6 +115,7 @@ Plug 'elixir-editors/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'kana/vim-textobj-user' " Required for vim-textobj-rubyblock
 Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'vim-scripts/indentpython.vim'
 
 call plug#end()
 
