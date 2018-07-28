@@ -59,7 +59,7 @@ set shiftwidth=2    " 2 space tabs when reading
 set softtabstop=2   " 2 space tabs in insert mode
 
 " Spell check
-set spell spelllang=en_us
+" set spell spelllang=en_us
 
 " Autocmds
 autocmd BufEnter * EnableStripWhitespaceOnSave  " trim whitespace on save
@@ -90,6 +90,7 @@ Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'Asheq/close-buffers.vim'
+Plug 'edkolev/tmuxline.vim'
 
 " Web Dev Plugs
 Plug 'skammer/vim-css-color' " Hex colors
