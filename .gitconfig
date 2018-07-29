@@ -1,0 +1,29 @@
+[core]
+	excludesfile = /Users/kuiros/.gitignore_global
+	editor = /usr/local/bin/nvim
+[user]
+	name = Josh Kuiros
+	email = joshkuiros@gmail.com
+[pull]
+	rebase = true
+[color]
+  ui = true
+[alias]
+  a=add
+  aa=add --all
+  ap=add -p
+  b=branch
+  c=commit -v
+  cam=commit -a -m
+  cb=checkout -b
+  cmsg=commit -m
+  co=checkout
+  d=diff
+  f=fetch
+  gl=pull
+  gp=push
+  lg=log --stat
+  m=merge
+  st=status
+  sta=stash save
+  stp=stash pop
