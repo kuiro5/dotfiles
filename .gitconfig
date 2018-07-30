@@ -1,11 +1,11 @@
 [core]
-	excludesfile = /Users/kuiros/.gitignore_global
-	editor = /usr/local/bin/nvim
+  excludesfile = /Users/kuiros/.gitignore_global
+  editor = /usr/local/bin/nvim
 [user]
-	name = Josh Kuiros
-	email = joshkuiros@gmail.com
+  name = Josh Kuiros
+  email = joshkuiros@gmail.com
 [pull]
-	rebase = true
+  rebase = true
 [color]
   ui = true
 [alias]
