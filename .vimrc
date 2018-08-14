@@ -245,7 +245,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " Markdown Soft Wrap Lines
  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
- autocmd BufRead,BufNewFile *.md setlocal formatoptions+=t
+ autocmd BufRead,BufNewFile *.md setlocal formatoptions+=rt
 
 " Required for Operator Mono
 hi htmlArg gui=italic
