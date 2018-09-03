@@ -95,6 +95,7 @@ Plug 'andrewradev/splitjoin.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'Asheq/close-buffers.vim'
 Plug 'edkolev/tmuxline.vim'
+Plug 'kana/vim-textobj-line'
 
 " Web Dev Plugs
 Plug 'skammer/vim-css-color' " Hex colors
@@ -266,7 +267,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " Markdown Soft Wrap Lines
  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
- autocmd BufRead,BufNewFile *.md setlocal formatoptions+=rt
+ autocmd BufRead,BufNewFile *.md setlocal formatoptions+=ar
 
 " Required for Operator Mono
 hi htmlArg gui=italic
