@@ -198,6 +198,7 @@ set splitright
 
 " Ale
 let g:ale_completion_enabled = 1
+let g:ale_sign_column_always = 1
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
