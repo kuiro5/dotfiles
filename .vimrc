@@ -113,22 +113,35 @@ Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'wakatime/vim-wakatime'
 Plug 'airblade/vim-gitgutter'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'elixir-editors/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'kana/vim-textobj-user' " Required for vim-textobj-rubyblock
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'vim-scripts/indentpython.vim'
+Plug 'sbdchd/neoformat'
 
 call plug#end()
 
 " Prettier
-let g:prettier#exec_cmd_async = 1
-let g:prettier#autoformat = 0
-let g:prettier#config#bracket_spacing = 'true'
-let g:prettier#config#jsx_bracket_same_line = 'false'
-let g:prettier#config#parser = 'babylon'
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+"let g:prettier#exec_cmd_async = 1
+"let g:prettier#autoformat = 0
+"let g:prettier#config#bracket_spacing = 'true'
+"let g:prettier#config#jsx_bracket_same_line = 'false'
+"let g:prettier#config#parser = 'babylon'
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
+
+" Neoformat
+augroup NeoformatAutoFormat
+  autocmd!
+
+  autocmd FileType javascript setlocal formatprg=prettier\
+        \--stdin\
+        \--print-width\ 80\
+        \--single-quote\
+        \--trailing-comma\ es5
+
+  autocmd FileType ruby setlocal formatprg=rufo
+augroup END
 
 " Include .jsx syntax highlighting in .js files
 let g:jsx_ext_required = 0
@@ -199,6 +212,9 @@ set splitright
 " Ale
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
+highlight ALEWarning  ctermbg=Black
+highlight ALEWarningSign ctermbg=Black
+highlight ALEErrorSign ctermbg=Black
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -269,6 +285,9 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 " Markdown Soft Wrap Lines
  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
  autocmd BufRead,BufNewFile *.md setlocal formatoptions+=ar
+
+ " Close Buffers
+ nnoremap <silent> <C-q> :CloseBuffersMenu<CR>
 
 " Required for Operator Mono
 hi htmlArg gui=italic
