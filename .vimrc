@@ -167,6 +167,7 @@ let mapleader=" "   " map space to leader
 nmap <leader>pt :NERDTreeTabsToggle<CR>
 nmap <leader>pf :NERDTreeFind<CR>
 let g:NERDTreeWinPos = 'right'
+let g:NERDTreeShowHidden=1
 
 " FZF
 map <C-b> :Buffers<CR>
