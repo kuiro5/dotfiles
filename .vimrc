@@ -97,6 +97,10 @@ Plug 'Asheq/close-buffers.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'kana/vim-textobj-line'
 
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+
 " Web Dev Plugs
 Plug 'skammer/vim-css-color' " Hex colors
 Plug 'pangloss/vim-javascript' " Javascript Highlighter
@@ -121,6 +125,8 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'sbdchd/neoformat'
 
 call plug#end()
+
+let g:vim_markdown_folding_disabled = 1
 
 " Prettier
 "let g:prettier#exec_cmd_async = 1
@@ -284,8 +290,8 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " Markdown Soft Wrap Lines
- autocmd BufRead,BufNewFile *.md setlocal textwidth=80
- autocmd BufRead,BufNewFile *.md setlocal formatoptions+=ar
+ "autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+ "autocmd BufRead,BufNewFile *.md setlocal formatoptions+=ar
 
  " Close Buffers
  nnoremap <silent> <C-q> :CloseBuffersMenu<CR>
@@ -295,3 +301,6 @@ hi htmlArg gui=italic
 hi htmlArg cterm=italic
 hi Comment gui=italic
 hi Comment cterm=italic
+
+" JSON
+set conceallevel=0
