@@ -96,6 +96,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'Asheq/close-buffers.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'kana/vim-textobj-line'
+Plug 'henrik/vim-reveal-in-finder'
 
 " Web Dev Plugs
 Plug 'skammer/vim-css-color' " Hex colors
@@ -119,28 +120,17 @@ Plug 'kana/vim-textobj-user' " Required for vim-textobj-rubyblock
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'sbdchd/neoformat'
+Plug 'tpope/vim-haml'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
 
-" Prettier
-"let g:prettier#exec_cmd_async = 1
-"let g:prettier#autoformat = 0
-"let g:prettier#config#bracket_spacing = 'true'
-"let g:prettier#config#jsx_bracket_same_line = 'false'
-"let g:prettier#config#parser = 'babylon'
-"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md PrettierAsync
-
 " Neoformat
+" vim-prettier is currently using a global executable
 augroup NeoformatAutoFormat
-  autocmd!
-
-  autocmd FileType javascript setlocal formatprg=prettier\
-        \--stdin\
-        \--print-width\ 80\
-        \--single-quote\
-        \--trailing-comma\ es5
-
-  autocmd FileType ruby setlocal formatprg=rufo
+    autocmd!
+    autocmd FileType javascript,javascript.jsx setlocal formatprg=prettier
+    autocmd BufWritePre *.js,*.jsx Neoformat
 augroup END
 
 " Include .jsx syntax highlighting in .js files
@@ -279,12 +269,12 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
-" 80 Character Color Column
-set colorcolumn=80
+" 120 Character Color Column
+set colorcolumn=120
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " Markdown Soft Wrap Lines
- autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+ autocmd BufRead,BufNewFile *.md setlocal textwidth=120
  autocmd BufRead,BufNewFile *.md setlocal formatoptions+=ar
 
  " Close Buffers
