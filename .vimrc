@@ -98,10 +98,6 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'kana/vim-textobj-line'
 Plug 'henrik/vim-reveal-in-finder'
 
-" Markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-
 " Web Dev Plugs
 Plug 'skammer/vim-css-color' " Hex colors
 Plug 'pangloss/vim-javascript' " Javascript Highlighter
@@ -129,7 +125,6 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 call plug#end()
 
-let g:vim_markdown_folding_disabled = 1
 " Neoformat
 " vim-prettier is currently using a global executable
 augroup NeoformatAutoFormat
