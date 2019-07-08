@@ -98,7 +98,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'kana/vim-textobj-line'
 Plug 'henrik/vim-reveal-in-finder'
 
-" Web Dev Plugs
+" Web Dev Plugins
 Plug 'skammer/vim-css-color' " Hex colors
 Plug 'pangloss/vim-javascript' " Javascript Highlighter
 Plug 'mxw/vim-jsx' " JSX Syntax Highlighter
@@ -122,6 +122,9 @@ Plug 'vim-scripts/indentpython.vim'
 Plug 'sbdchd/neoformat'
 Plug 'tpope/vim-haml'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+" Writing Plugs
+Plug 'reedes/vim-pencil'
 
 call plug#end()
 
@@ -274,8 +277,8 @@ set colorcolumn=120
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " Markdown Soft Wrap Lines
- autocmd BufRead,BufNewFile *.md setlocal textwidth=120
- autocmd BufRead,BufNewFile *.md setlocal formatoptions+=ar
+ "autocmd BufRead,BufNewFile *.md setlocal textwidth=120
+ "autocmd BufRead,BufNewFile *.md setlocal formatoptions+=ar
 
  " Close Buffers
  nnoremap <silent> <C-q> :CloseBuffersMenu<CR>
@@ -288,3 +291,10 @@ hi Comment cterm=italic
 
 " JSON
 set conceallevel=0
+
+" vim-pencil settings
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
