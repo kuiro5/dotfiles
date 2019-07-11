@@ -98,6 +98,9 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'kana/vim-textobj-line'
 Plug 'henrik/vim-reveal-in-finder'
 
+" Notes
+Plug 'vimwiki/vimwiki'
+
 " Web Dev Plugins
 Plug 'skammer/vim-css-color' " Hex colors
 Plug 'pangloss/vim-javascript' " Javascript Highlighter
@@ -298,3 +301,6 @@ augroup pencil
   autocmd FileType markdown,mkd call pencil#init()
   autocmd FileType text         call pencil#init()
 augroup END
+nnoremap <silent> Q gqap
+xnoremap <silent> Q gq
+nnoremap <silent> <leader>Q vapJgqap
