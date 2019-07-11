@@ -14,6 +14,9 @@ alias g='git'
 alias bp="vim ~/.bash_profile"
 alias src="source ~/.bash_profile"
 
+# Notes
+alias notes="vim ~/vimwiki/index.wiki"
+
 COLOR_RED="\033[0;31m"
 COLOR_YELLOW="\033[0;33m"
 COLOR_GREEN="\033[0;32m"
