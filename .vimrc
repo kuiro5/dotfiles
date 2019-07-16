@@ -97,6 +97,7 @@ Plug 'Asheq/close-buffers.vim'
 Plug 'edkolev/tmuxline.vim'
 Plug 'kana/vim-textobj-line'
 Plug 'henrik/vim-reveal-in-finder'
+Plug 'mhinz/vim-startify'
 
 " Notes
 Plug 'vimwiki/vimwiki'
