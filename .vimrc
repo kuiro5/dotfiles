@@ -79,36 +79,29 @@ Plug 'vim-airline/vim-airline-themes' " Status/tabline themes
 Plug 'tpope/vim-surround'             " Editing, deleting strings, parentheses, brackets, etc
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'rakr/vim-one'                   " Atom one dark theme
+"Plug 'rakr/vim-one'                   " Atom one dark theme
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
 Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'qpkorr/vim-bufkill'
-Plug 'tpope/vim-eunuch'
+"Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'maxbrunsfeld/vim-yankstack'
+"Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'Asheq/close-buffers.vim'
-Plug 'edkolev/tmuxline.vim'
-Plug 'kana/vim-textobj-line'
+"Plug 'edkolev/tmuxline.vim'
+"Plug 'kana/vim-textobj-line'
 Plug 'henrik/vim-reveal-in-finder'
-Plug 'mhinz/vim-startify'
-
-" Notes
-Plug 'vimwiki/vimwiki'
 
 " Web Dev Plugins
-Plug 'skammer/vim-css-color' " Hex colors
-Plug 'pangloss/vim-javascript' " Javascript Highlighter
-Plug 'mxw/vim-jsx' " JSX Syntax Highlighter
-Plug 'cakebaker/scss-syntax.vim' " SCSS Syntax Highlighter
-Plug 'vim-ruby/vim-ruby'
-Plug 'kchmck/vim-coffee-script'
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' } " Javascript Highlighter
+Plug 'mxw/vim-jsx', { 'for': 'javascript' } " JSX Syntax Highlighter
+"Plug 'cakebaker/scss-syntax.vim' " SCSS Syntax Highlighter
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'w0rp/ale'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -117,14 +110,12 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'wakatime/vim-wakatime'
+Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'airblade/vim-gitgutter'
-Plug 'elixir-editors/vim-elixir'
-Plug 'fatih/vim-go'
-Plug 'kana/vim-textobj-user' " Required for vim-textobj-rubyblock
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'vim-scripts/indentpython.vim'
+Plug 'kana/vim-textobj-user', { 'for': 'ruby' } " Required for vim-textobj-rubyblock
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 'sbdchd/neoformat'
-Plug 'tpope/vim-haml'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Writing Plugs
@@ -231,18 +222,6 @@ function! Multiple_cursors_before()
            let g:deoplete#disable_auto_complete = 1
     endif
 endfunction
-
-" Needed for vim-multiple-cursors,
-" Called once right before you start selecting multiple cursors
-" Called once only when the multiple selection is canceled (default <Esc>)
-function! Multiple_cursors_after()
-    if exists('g:deoplete#disable_auto_complete')
-           let g:deoplete#disable_auto_complete = 0
-    endif
-endfunction
-
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " Theme
 set background=dark " for the dark version
