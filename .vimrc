@@ -118,9 +118,6 @@ Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 'sbdchd/neoformat'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
-" Writing Plugs
-Plug 'reedes/vim-pencil'
-
 call plug#end()
 
 " Neoformat
@@ -259,9 +256,12 @@ endif
 set colorcolumn=120
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-" Markdown Soft Wrap Lines
- "autocmd BufRead,BufNewFile *.md setlocal textwidth=120
- "autocmd BufRead,BufNewFile *.md setlocal formatoptions+=ar
+" Markdown Settings
+augroup Markdown
+  autocmd!
+  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
+  autocmd BufRead,BufNewFile *.md setlocal formatoptions+=ar
+augroup end
 
  " Close Buffers
  nnoremap <silent> <C-q> :CloseBuffersMenu<CR>
@@ -276,11 +276,11 @@ hi Comment cterm=italic
 set conceallevel=0
 
 " vim-pencil settings
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
-augroup END
+"augroup pencil
+  "autocmd!
+  "autocmd FileType markdown,mkd call pencil#init()
+  "autocmd FileType text         call pencil#init()
+"augroup END
 nnoremap <silent> Q gqap
 xnoremap <silent> Q gq
 nnoremap <silent> <leader>Q vapJgqap
