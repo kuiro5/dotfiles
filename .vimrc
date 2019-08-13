@@ -66,7 +66,17 @@ au BufNewFile,BufRead *.py
 " set spell spelllang=en_us
 
 " Autocmds
-autocmd BufEnter * EnableStripWhitespaceOnSave  " trim whitespace on save
+augroup WhiteSpace
+  autocmd!
+  autocmd BufEnter * EnableStripWhitespaceOnSave  " trim whitespace on save
+augroup END
+
+" Loads vim-plug if needed
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 " Plug - used for Prettier
 call plug#begin('~/.local/share/nvim/plugged')
@@ -205,12 +215,15 @@ highlight ALEErrorSign ctermbg=Black
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup Deoplete
+  autocmd!
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+augroup end
 
 " Needed for vim-multiple-cursors,
 " Called once right before you start selecting multiple cursors
@@ -256,11 +269,10 @@ endif
 set colorcolumn=120
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
-" Markdown Settings
+" Markdown Soft Wrap Lines
 augroup Markdown
-  autocmd!
-  autocmd BufRead,BufNewFile *.md setlocal textwidth=80
-  autocmd BufRead,BufNewFile *.md setlocal formatoptions+=ar
+ autocmd!
+ autocmd BufRead,BufNewFile *.md setlocal colorcolumn=80
 augroup end
 
  " Close Buffers
@@ -276,11 +288,14 @@ hi Comment cterm=italic
 set conceallevel=0
 
 " vim-pencil settings
-"augroup pencil
-  "autocmd!
-  "autocmd FileType markdown,mkd call pencil#init()
-  "autocmd FileType text         call pencil#init()
-"augroup END
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
+let g:pencil#textwidth = 80
+let g:pencil#map#suspend_af = 'K'
+
 nnoremap <silent> Q gqap
 xnoremap <silent> Q gq
 nnoremap <silent> <leader>Q vapJgqap
