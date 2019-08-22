@@ -56,12 +56,6 @@ set shiftwidth=2    " 2 space tabs when reading
 set softtabstop=2   " 2 space tabs in insert mode
 set tabstop=2       " Set tab width to 2
 
-" Python Identation
-au BufNewFile,BufRead *.py
-      \ set tabstop=4
-      \ set softtabstop=4
-      \ set shiftwidth=4
-
 " Spell check
 " set spell spelllang=en_us
 
@@ -127,6 +121,11 @@ Plug 'kana/vim-textobj-user', { 'for': 'ruby' } " Required for vim-textobj-rubyb
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 'sbdchd/neoformat'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+" Markdown / Writing Plugins
+Plug 'reedes/vim-pencil'
+Plug 'tpope/vim-markdown'
+Plug 'jtratner/vim-flavored-markdown'
 
 call plug#end()
 
@@ -271,8 +270,12 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 " Markdown Soft Wrap Lines
 augroup Markdown
- autocmd!
- autocmd BufRead,BufNewFile *.md setlocal colorcolumn=80
+ au!
+ au BufRead,BufNewFile *.md,*.markdown setlocal filetype=ghmarkdown
+ au BufRead,BufNewFile *.md,*.markdown setlocal colorcolumn=80
+ au BufRead,BufNewFile *.md,*.markdown setlocal softtabstop=4
+ au BufRead,BufNewFile *.md,*.markdown setlocal shiftwidth=4
+ au BufRead,BufNewFile *.md,*.markdown setlocal tabstop=4
 augroup end
 
  " Close Buffers
