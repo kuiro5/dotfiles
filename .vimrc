@@ -124,8 +124,8 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Markdown / Writing Plugins
 Plug 'reedes/vim-pencil'
-Plug 'tpope/vim-markdown'
-Plug 'jtratner/vim-flavored-markdown'
+"Plug 'tpope/vim-markdown'
+"Plug 'jtratner/vim-flavored-markdown'
 
 call plug#end()
 
@@ -271,7 +271,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 " Markdown Soft Wrap Lines
 augroup Markdown
  au!
- au BufRead,BufNewFile *.md,*.markdown setlocal filetype=ghmarkdown
+ "au BufRead,BufNewFile *.md,*.markdown setlocal filetype=ghmarkdown
  au BufRead,BufNewFile *.md,*.markdown setlocal colorcolumn=80
  au BufRead,BufNewFile *.md,*.markdown setlocal softtabstop=4
  au BufRead,BufNewFile *.md,*.markdown setlocal shiftwidth=4
