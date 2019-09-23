@@ -124,6 +124,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Markdown / Writing Plugins
 Plug 'reedes/vim-pencil'
+Plug 'junegunn/goyo.vim'
 "Plug 'tpope/vim-markdown'
 "Plug 'jtratner/vim-flavored-markdown'
 
@@ -296,8 +297,18 @@ augroup pencil
   autocmd FileType markdown,mkd call pencil#init()
   autocmd FileType text         call pencil#init()
 augroup END
+let g:pencil#wrapModeDefault = 'soft'
 let g:pencil#textwidth = 80
+let g:pencil#joinspaces = 0
+let g:pencil#cursorwrap = 1
+let g:pencil#conceallevel = 3
+let g:pencil#concealcursor = 'c'
+let g:pencil#softDetectSample = 20
+let g:pencil#softDetectThreshold = 130
 let g:pencil#map#suspend_af = 'K'
+
+" goyo
+let g:goyo_linenr = 1
 
 nnoremap <silent> Q gqap
 xnoremap <silent> Q gq
