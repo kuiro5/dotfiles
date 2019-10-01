@@ -307,8 +307,8 @@ let g:pencil#softDetectSample = 20
 let g:pencil#softDetectThreshold = 130
 let g:pencil#map#suspend_af = 'K'
 
-" goyo
-let g:goyo_linenr = 1
+" Goyo
+nmap <leader>g :Goyo<CR>
 
 nnoremap <silent> Q gqap
 xnoremap <silent> Q gq
