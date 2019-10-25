@@ -59,12 +59,6 @@ set tabstop=2       " Set tab width to 2
 " Spell check
 " set spell spelllang=en_us
 
-" Autocmds
-augroup WhiteSpace
-  autocmd!
-  autocmd BufEnter * EnableStripWhitespaceOnSave  " trim whitespace on save
-augroup END
-
 " Loads vim-plug if needed
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -125,6 +119,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " Markdown / Writing Plugins
 Plug 'reedes/vim-pencil'
 Plug 'junegunn/goyo.vim'
+Plug 'vimwiki/vimwiki'
 "Plug 'tpope/vim-markdown'
 "Plug 'jtratner/vim-flavored-markdown'
 
@@ -310,6 +305,15 @@ let g:pencil#map#suspend_af = 'K'
 " Goyo
 nmap <leader>g :Goyo<CR>
 
+" Vimwiki
+let g:vimwiki_list = [{'path': '~/notes/',
+      \ 'syntax': 'markdown', 'ext': '.md'}]
+
 nnoremap <silent> Q gqap
 xnoremap <silent> Q gq
 nnoremap <silent> <leader>Q vapJgqap
+
+" Whitespace
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm=0
