@@ -220,14 +220,6 @@ augroup Deoplete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup end
 
-" Needed for vim-multiple-cursors,
-" Called once right before you start selecting multiple cursors
-function! Multiple_cursors_before()
-    if exists('g:deoplete#disable_auto_complete')
-           let g:deoplete#disable_auto_complete = 1
-    endif
-endfunction
-
 " Theme
 set background=dark " for the dark version
 
