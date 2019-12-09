@@ -258,6 +258,7 @@ augroup Markdown
  au!
  au BufRead,BufNewFile *.md,*.markdown setlocal colorcolumn=80
 augroup end
+let g:markdown_fenced_languages = ['bash=sh', 'css', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'html']
 
  " Close Buffers
  nnoremap <silent> <C-q> :CloseBuffersMenu<CR>
