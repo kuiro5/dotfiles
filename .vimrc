@@ -117,11 +117,8 @@ Plug 'sbdchd/neoformat'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Markdown / Writing Plugins
-Plug 'reedes/vim-pencil'
 Plug 'junegunn/goyo.vim'
 Plug 'vimwiki/vimwiki'
-"Plug 'tpope/vim-markdown'
-"Plug 'jtratner/vim-flavored-markdown'
 
 call plug#end()
 
@@ -267,11 +264,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 " Markdown Soft Wrap Lines
 augroup Markdown
  au!
- "au BufRead,BufNewFile *.md,*.markdown setlocal filetype=ghmarkdown
  au BufRead,BufNewFile *.md,*.markdown setlocal colorcolumn=80
- au BufRead,BufNewFile *.md,*.markdown setlocal softtabstop=4
- au BufRead,BufNewFile *.md,*.markdown setlocal shiftwidth=4
- au BufRead,BufNewFile *.md,*.markdown setlocal tabstop=4
 augroup end
 
  " Close Buffers
@@ -286,27 +279,11 @@ hi Comment cterm=italic
 " JSON
 set conceallevel=0
 
-" vim-pencil settings
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
-augroup END
-let g:pencil#wrapModeDefault = 'soft'
-let g:pencil#textwidth = 80
-let g:pencil#joinspaces = 0
-let g:pencil#cursorwrap = 1
-let g:pencil#conceallevel = 3
-let g:pencil#concealcursor = 'c'
-let g:pencil#softDetectSample = 20
-let g:pencil#softDetectThreshold = 130
-let g:pencil#map#suspend_af = 'K'
-
 " Goyo
 nmap <leader>g :Goyo<CR>
 
 " Vimwiki
-let g:vimwiki_list = [{'path': '~/notes/',
+let g:vimwiki_list = [{'path': '~/brain/',
       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 nnoremap <silent> Q gqap
