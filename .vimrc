@@ -124,12 +124,8 @@ Plug 'michal-h21/vim-zettel'
 call plug#end()
 
 " Neoformat
-" vim-prettier is currently using a global executable
-augroup NeoformatAutoFormat
-    autocmd!
-    autocmd FileType javascript,javascript.jsx setlocal formatprg=prettier
-    autocmd BufWritePre *.js,*.jsx Neoformat
-augroup END
+autocmd BufWritePre *.js,*.jsx Neoformat prettier
+autocmd BufWritePre *.ex,*.exs Neoformat
 
 " Include .jsx syntax highlighting in .js files
 let g:jsx_ext_required = 0
@@ -258,6 +254,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 augroup Markdown
  au!
  au BufRead,BufNewFile *.md,*.markdown setlocal colorcolumn=80
+ au BufRead,BufNewFile *.md,*.markdown setlocal linebreak
 augroup end
 let g:markdown_fenced_languages = ['bash=sh', 'css', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'html']
 
@@ -278,7 +275,13 @@ nmap <leader>g :Goyo<CR>
 
 " Vimwiki
 let g:vimwiki_list = [{'path': '~/pensieve/notes',
-      \ 'syntax': 'markdown', 'ext': '.md'}]
+      \ 'syntax': 'markdown', 'ext': '.md',
+      \ 'diary_index': 'plan', 'diary_header': 'Plan',
+      \ 'diary_rel_path': 'plan/',
+      \ 'auto_toc': 1,
+      \ 'auto_tags': 1,
+      \ 'auto_diary_index': 1}]
+nnoremap <leader>bl :VimwikiBacklinks<cr>
 
 nnoremap <silent> Q gqap
 xnoremap <silent> Q gq
