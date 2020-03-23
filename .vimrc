@@ -119,6 +119,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " Markdown / Writing Plugins
 Plug 'junegunn/goyo.vim'
 Plug 'vimwiki/vimwiki'
+Plug 'michal-h21/vim-zettel'
 
 call plug#end()
 
@@ -276,7 +277,7 @@ set conceallevel=0
 nmap <leader>g :Goyo<CR>
 
 " Vimwiki
-let g:vimwiki_list = [{'path': '~/brain/',
+let g:vimwiki_list = [{'path': '~/pensieve/notes',
       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 nnoremap <silent> Q gqap
