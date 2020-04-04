@@ -197,10 +197,10 @@ set splitright
 " Ale
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
-highlight ALEWarning  ctermbg=136
 highlight ALEWarningSign ctermbg=136
 highlight ALEErrorSign ctermbg=125
-highlight ALEError ctermbg=125
+highlight ALEWarning  ctermbg=235
+highlight ALEError ctermbg=235
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
