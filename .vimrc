@@ -49,7 +49,7 @@ set viminfo='100,f1
 set lazyredraw
 
 " Indentation
-set expandtab       " map tabs to sapces
+set expandtab       " map tabs to spaces
 set autoindent	    " autoindent based on line above
 set smartindent     " smarter indent for c-like languages
 set shiftwidth=2    " 2 space tabs when reading
@@ -77,22 +77,17 @@ Plug 'vim-airline/vim-airline-themes' " Status/tabline themes
 Plug 'tpope/vim-surround'             " Editing, deleting strings, parentheses, brackets, etc
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'rakr/vim-one'                   " Atom one dark theme
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
 Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
-Plug 'ludovicchabant/vim-gutentags'
+"Plug 'ludovicchabant/vim-gutentags'
 Plug 'qpkorr/vim-bufkill'
-"Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
-"Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'andrewradev/splitjoin.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'Asheq/close-buffers.vim'
-"Plug 'edkolev/tmuxline.vim'
-"Plug 'kana/vim-textobj-line'
 Plug 'henrik/vim-reveal-in-finder'
 
 " Web Dev Plugins
@@ -105,8 +100,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/neosnippet-snippets'
 Plug 'wakatime/vim-wakatime'
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -119,7 +112,6 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " Markdown / Writing Plugins
 Plug 'junegunn/goyo.vim'
 Plug 'vimwiki/vimwiki'
-Plug 'michal-h21/vim-zettel'
 
 call plug#end()
 
@@ -197,6 +189,9 @@ set splitright
 " Ale
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1
+let g:ale_linters = {
+\   'elixir': [],
+\}
 highlight ALEWarningSign ctermbg=136
 highlight ALEErrorSign ctermbg=125
 highlight ALEWarning  ctermbg=235
@@ -215,10 +210,6 @@ augroup Deoplete
   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 augroup end
 
-" Theme
-set background=dark " for the dark version
-
-let g:one_allow_italics = 1
 
 " Change color for matching parens
 hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=#eee8d5 guifg=NONE
@@ -227,21 +218,6 @@ hi! MatchParen cterm=NONE,bold gui=NONE,bold  guibg=#eee8d5 guifg=NONE
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-
-" Neosnippet
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For conceal markers.
 if has('conceal')
