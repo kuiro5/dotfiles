@@ -87,11 +87,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Navigation
 Plug 'scrooloose/nerdtree'            " Directory Tree
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'easymotion/vim-easymotion'
-"Plug 'Shougo/deoplete.nvim'
 
 " Visual
 Plug 'vim-airline/vim-airline'        " Status/tabline
@@ -107,10 +106,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'wakatime/vim-wakatime'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-endwise'
 
 " Linting/Formatting
-Plug 'dense-analysis/ale'
 Plug 'ntpeters/vim-better-whitespace' " Trims trailing whitespace
 
 " Git
@@ -127,10 +124,14 @@ Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'kana/vim-textobj-user', { 'for': 'ruby' } " Required for vim-textobj-rubyblock
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'elixir-lsp/coc-elixir', {'do': 'yarn install && yarn prepack'}
 
 " Markdown / Writing Plugins
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'vimwiki/vimwiki'
+Plug 'logico/typewriter-vim'
 
 call plug#end()
 
@@ -194,40 +195,15 @@ nmap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-" Ale
-highlight ALEWarningSign ctermbg=NONE ctermfg=red
-highlight ALEWarning  ctermbg=NONE ctermfg=red
-highlight ALEError ctermbg=NONE ctermfg=yellow
-highlight ALEErrorSign ctermbg=NONE ctermfg=yellow
-hi SignColumn ctermbg=NONE
-
-let g:ale_sign_error = '•'
-let g:ale_sign_warning = '•'
-let g:ale_elixir_credo_strict=1
-let g:ale_fix_on_save = 1
-let g:ale_fixers = {
-\   'elixir': ['mix_format'],
-\   'javascript': ['prettier']
-\}
-
-" Deoplete
-"let g:deoplete#enable_at_startup = 1
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-augroup Deoplete
-  autocmd!
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-augroup end
-
 " Markdown Soft Wrap Lines
 augroup Markdown
- au!
- au BufRead,BufNewFile *.md,*.markdown setlocal colorcolumn=80
- au BufRead,BufNewFile *.md,*.markdown setlocal linebreak
+ autocmd!
+ autocmd Filetype vimwiki setlocal colorcolumn=80
+ autocmd Filetype vimwiki setlocal linebreak
+ autocmd Filetype vimwiki nnoremap j gj
+ autocmd Filetype vimwiki nnoremap k gk
+ autocmd Filetype vimwiki colorscheme typewriter
+ autocmd Filetype vimwiki let g:airline_theme='typewriter'
 augroup end
 let g:markdown_fenced_languages = ['bash=sh', 'css', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'html']
 
@@ -238,7 +214,7 @@ let g:markdown_fenced_languages = ['bash=sh', 'css', 'javascript', 'js=javascrip
 set conceallevel=0
 
 " Goyo
-nmap <leader>g :Goyo<CR>
+nmap <leader>g :Goyo<CR>:Limelight<CR>
 
 " Vimwiki
 let g:vimwiki_list = [{'path': '~/pensieve/notes',
@@ -254,3 +230,33 @@ nnoremap <leader>bl :VimwikiBacklinks<cr>
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 let g:strip_whitespace_confirm=0
+
+" Coc
+set signcolumn=yes
+highlight SignColumn ctermbg=NONE
+
+nmap <leader>rn <Plug>(coc-rename)
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
