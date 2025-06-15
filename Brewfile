@@ -17,6 +17,7 @@ brew "zoxide"
 
 # Font for better icon support in bufferline/lualine
 cask "font-hack-nerd-font"
+cask "alacritty", no_quarantine: true
 
 # Node is sometimes needed for LSPs or formatters
 brew "node"
