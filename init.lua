@@ -216,9 +216,6 @@ require("lazy").setup({
               }
             },
       }}
-        vim.api.nvim_set_hl(0, 'BufferLineFill', {fg="#0d2a34", bg="#0d2a34"})
-        vim.api.nvim_set_hl(0, 'BufferLineSeparator', {fg="#0d2a34", bg="#0d2a34"})
-        vim.api.nvim_set_hl(0, 'BufferLineSeparatorSelected', {fg="#0d2a34", bg="#0d2a34"})
       end
     },
     {

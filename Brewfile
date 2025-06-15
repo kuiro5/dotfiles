@@ -1,24 +1,25 @@
-tap "heroku/brew"
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
-tap "homebrew/services"
-tap "homebrew/versions"
-tap "universal-ctags/universal-ctags"
-brew "python"
-brew "ctags", link: false
-brew "httpie"
-brew "lua"
-brew "node", link: false
-brew "nvm"
-brew "perl"
-brew "postgresql", restart_service: true
-brew "redis", restart_service: true
-brew "ruby"
-brew "the_silver_searcher"
+# Brewfile for Neovim and related tooling
+
+# Core packages
+brew "neovim"             # Latest Neovim
+brew "ripgrep"            # Required for Telescope live_grep
+brew "fd"                 # Faster alternative to find, used by Telescope
+brew "git"                # Needed for lazy.nvim and plugin cloning
+brew "lua-language-server" # LSP for Lua
+brew "go"                 # Go tools including gopls
+brew "tree-sitter"        # For better syntax highlighting, used by some Neovim plugins
+brew "fzf"                # Optional fuzzy finder integration
+brew "stylua"             # Lua code formatter (optional)
+brew "shfmt"              # Shell script formatter (optional)
 brew "tmux"
 brew "tree"
-brew "vim", args: ["with-lua"]
-brew "yarn", args: ["without-node"]
-brew "z"
-brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
+brew "zoxide"
+
+# Font for better icon support in bufferline/lualine
+cask "font-hack-nerd-font"
+
+# Node is sometimes needed for LSPs or formatters
+brew "node"
+
+# Python can be useful for other Neovim plugins
+brew "python"
