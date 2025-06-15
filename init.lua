@@ -60,7 +60,7 @@ vim.g.maplocalleader = "\\"
 
 -- 120 character color column
 vim.o.colorcolumn = "120"
-vim.api.nvim_set_hl(0, "ColorColumn", { bg = "black" })
+vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#163540" })
 
 -- Remove search highlight when pressing ESC in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR><Esc>", { silent = true })
@@ -180,7 +180,7 @@ require("lazy").setup({
         require('lualine').setup {
           options = {
             theme = 'auto',
-           section_separators = '',
+            section_separators = '',
             component_separators = '',
             icons_enabled = true,
           },
@@ -215,104 +215,99 @@ require("lazy").setup({
                 text_align = "left",
               }
             },
-      }}
-      end
-    },
-    {
-      "echasnovski/mini.bufremove",
-      version = "*",
-      config = function()
-        local bufremove = require("mini.bufremove")
-
-        -- Replace :BD
-        vim.keymap.set("n", "<leader>bd", function() bufremove.delete(0, false) end, { desc = "Delete buffer" })
-
-        -- Replace :bd!
-        vim.keymap.set("n", "<leader>bd!", function() bufremove.delete(0, true) end, { desc = "Force delete buffer" })
-
-        -- Replace :Bdelete other
-        vim.keymap.set("n", "<leader>bdo", function()
-          local cur = vim.api.nvim_get_current_buf()
-          for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-            if buf ~= cur and vim.api.nvim_buf_is_loaded(buf) then
-              bufremove.delete(buf, false)
-            end
-          end
-        end, { desc = "Delete other buffers" })
-      end,
-    },
-     -- Mason for managing LSP servers, DAP, linters, formatters
-    {
-      "williamboman/mason.nvim",
-      build = ":MasonUpdate",
-      config = true,
-    },
-
-    -- Mason integration with lspconfig
-    {
-      "williamboman/mason-lspconfig.nvim",
-      dependencies = { "williamboman/mason.nvim" },
-      config = true,
-    },
-
-    -- Core LSP configurations
-    {
-      "neovim/nvim-lspconfig",
-      dependencies = { "williamboman/mason.nvim" },
-      config = function()
-        local lspconfig = require("lspconfig")
-
-        -- Setup Lua language server
-        lspconfig.lua_ls.setup({
-          settings = {
-            Lua = {
-              runtime = { version = "LuaJIT" },
-              diagnostics = { globals = { "vim" } },
-              workspace = { library = vim.api.nvim_get_runtime_file("", true) },
-              telemetry = { enable = false },
-            },
-          },
-        })
-
-        -- Setup Go language server
-        lspconfig.gopls.setup({})
-      end,
-    },
-
-    -- Autocompletion framework
-    {
-      "hrsh7th/nvim-cmp",
-      dependencies = {
-        "hrsh7th/cmp-nvim-lsp",   -- LSP source for cmp
-        "L3MON4D3/LuaSnip",       -- Snippet engine
-        "saadparwaiz1/cmp_luasnip" -- Snippet completions
+          }}
+        end
       },
-      config = function()
-        local cmp = require("cmp")
-        local luasnip = require("luasnip")
+      {
+        "echasnovski/mini.bufremove",
+        version = "*",
+        config = function()
+          local bufremove = require("mini.bufremove")
 
-        cmp.setup({
-          snippet = {
-            expand = function(args)
-              luasnip.lsp_expand(args.body)
-            end,
-          },
-          mapping = cmp.mapping.preset.insert({
-            ["<Tab>"] = cmp.mapping.select_next_item(),
-            ["<S-Tab>"] = cmp.mapping.select_prev_item(),
-            ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          }),
-          sources = {
-            { name = "nvim_lsp" },
-            { name = "luasnip" },
-          },
-        })
-      end,
+          -- Replace :BD
+          vim.keymap.set("n", "<leader>bd", function() bufremove.delete(0, false) end, { desc = "Delete buffer" })
+
+          -- Replace :bd!
+          vim.keymap.set("n", "<leader>bd!", function() bufremove.delete(0, true) end, { desc = "Force delete buffer" })
+
+          -- Replace :Bdelete other
+          vim.keymap.set("n", "<leader>bdo", function()
+            local cur = vim.api.nvim_get_current_buf()
+            for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+              if buf ~= cur and vim.api.nvim_buf_is_loaded(buf) then
+                bufremove.delete(buf, false)
+              end
+            end
+          end, { desc = "Delete other buffers" })
+        end,
+      },
+      -- Mason for managing LSP servers, DAP, linters, formatters
+      {
+        "williamboman/mason.nvim",
+        build = ":MasonUpdate",
+        config = true,
+      },
+
+      -- Mason integration with lspconfig
+      {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "williamboman/mason.nvim" },
+        config = true,
+      },
+
+      -- Core LSP configurations
+      {
+        "neovim/nvim-lspconfig",
+        dependencies = { "williamboman/mason.nvim" },
+        config = function()
+          local lspconfig = require("lspconfig")
+
+          -- Setup Lua language server
+          lspconfig.lua_ls.setup({
+            settings = {
+              Lua = {
+                runtime = { version = "LuaJIT" },
+                diagnostics = { globals = { "vim" } },
+                workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+                telemetry = { enable = false },
+              },
+            },
+          })
+
+          -- Setup Go language server
+          lspconfig.gopls.setup({})
+        end,
+      },
+
+      -- Autocompletion framework
+      {
+        "hrsh7th/nvim-cmp",
+        dependencies = {
+          "hrsh7th/cmp-nvim-lsp",   -- LSP source for cmp
+          "L3MON4D3/LuaSnip",       -- Snippet engine
+          "saadparwaiz1/cmp_luasnip" -- Snippet completions
+        },
+        config = function()
+          local cmp = require("cmp")
+          local luasnip = require("luasnip")
+
+          cmp.setup({
+            snippet = {
+              expand = function(args)
+                luasnip.lsp_expand(args.body)
+              end,
+            },
+            mapping = cmp.mapping.preset.insert({
+              ["<Tab>"] = cmp.mapping.select_next_item(),
+              ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+              ["<CR>"] = cmp.mapping.confirm({ select = true }),
+            }),
+            sources = {
+              { name = "nvim_lsp" },
+              { name = "luasnip" },
+            },
+          })
+        end,
+      },
     },
-  },
-  -- Configure any other settings here. See the documentation for more details.
-  -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
-  -- automatically check for plugin updates
-  checker = { enabled = true },
-})
+  })
