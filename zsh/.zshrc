@@ -8,6 +8,3 @@ alias g='git'
 # Personal Navigation
 alias bp="vim ~/.bash_profile"
 alias src="source ~/.bash_profile"
-
-export TERM=xterm-256color-italic
-export EDITOR='nvim'

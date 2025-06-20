@@ -1,6 +1,7 @@
 # Brewfile for Neovim and related tooling
 
 # Core packages
+brew "stow"
 brew "neovim"             # Latest Neovim
 brew "ripgrep"            # Required for Telescope live_grep
 brew "fd"                 # Faster alternative to find, used by Telescope
