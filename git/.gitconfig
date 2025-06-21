@@ -22,6 +22,7 @@
   f=fetch
   gl=pull
   gp=push
+  gpf=push --force
   lg=log --stat
   m=merge
   st=status
