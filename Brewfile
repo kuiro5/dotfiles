@@ -15,10 +15,15 @@ brew "shfmt"              # Shell script formatter (optional)
 brew "tmux"
 brew "tree"
 brew "zoxide"
+brew "pure"
 
 # Font for better icon support in bufferline/lualine
 cask "font-hack-nerd-font"
 cask "alacritty", no_quarantine: true
+cask "alfred"
+cask "spotify"
+cask "meetingbar"
+cask "rectangle"
 
 # Node is sometimes needed for LSPs or formatters
 brew "node"
