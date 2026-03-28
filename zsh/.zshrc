@@ -1,10 +1,26 @@
-# Vim
+# Neovim
 alias vim="nvim"
-alias v="vim"
+alias v="nvim"
 
 # Git
-alias g='git'
+alias g="git"
 
-# Personal Navigation
-alias bp="vim ~/.bash_profile"
-alias src="source ~/.bash_profile"
+# Claude
+alias c="claude --dangerously-skip-permissions"
+
+# ASDF
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+# Z
+. /opt/homebrew/etc/profile.d/z.sh
+
+# PATH
+export PATH=$HOME/.local/bin:$PATH
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Pure prompt
+fpath+=$HOME/.zsh/pure
+autoload -U promptinit; promptinit
+prompt pure

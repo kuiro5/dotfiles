@@ -1,6 +1,9 @@
+[init]
+  defaultBranch = main
+
 [core]
-  excludesfile = /Users/kuiros/.gitignore_global
-  editor = /usr/local/bin/nvim
+  excludesfile = ~/.gitignore_global
+  editor = nvim
 [user]
   name = Josh Kuiros
   email = joshkuiros@gmail.com

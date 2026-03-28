@@ -1,2 +1,3 @@
-export TERM=xterm-256color-italic
 export EDITOR='nvim'
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

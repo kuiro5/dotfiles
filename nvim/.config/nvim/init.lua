@@ -159,15 +159,8 @@ require("lazy").setup({
       },
     },
     {
-      "ggandor/leap.nvim",
+      url = "https://codeberg.org/andyg/leap.nvim",
       config = function()
-        require("leap").add_default_mappings()
-
-        -- Remove conflicting mappings
-        vim.keymap.del('n', 's')
-        vim.keymap.del('x', 's')
-
-        -- Use gs for leap
         vim.keymap.set({'n', 'x', 'o'}, 'gs', function()
           require('leap').leap { target_windows = { vim.fn.win_getid() } }
         end)
@@ -260,10 +253,7 @@ require("lazy").setup({
         "neovim/nvim-lspconfig",
         dependencies = { "williamboman/mason.nvim" },
         config = function()
-          local lspconfig = require("lspconfig")
-
-          -- Setup Lua language server
-          lspconfig.lua_ls.setup({
+          vim.lsp.config('lua_ls', {
             settings = {
               Lua = {
                 runtime = { version = "LuaJIT" },
@@ -274,8 +264,7 @@ require("lazy").setup({
             },
           })
 
-          -- Setup Go language server
-          lspconfig.gopls.setup({})
+          vim.lsp.enable({ 'lua_ls', 'gopls' })
         end,
       },
 
