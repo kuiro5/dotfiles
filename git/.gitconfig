@@ -33,5 +33,5 @@
   st=status
   sta=stash save
   stp=stash pop
-[include]
+[includeIf "gitdir:~/plaid/"]
 	path = ~/.gitconfig.local
