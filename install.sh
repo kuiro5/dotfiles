@@ -71,6 +71,7 @@ echo "Verifying symlinks..."
 verify() {
   local targets=(
     "$HOME/.zshrc"
+    "$HOME/.zprofile"
     "$HOME/.gitconfig"
     "$HOME/.config/nvim/init.lua"
     "$HOME/.tmux.conf"

@@ -303,44 +303,5 @@ require("lazy").setup({
     },
   })
 
+pcall(require, "plaid")
 
-  -- Plaid
-  -- Create global plaidpath variable
-vim.g.plaidpath = vim.env.PLAID_PATH
-
--- Function to asynchronously run gazelle clean on files in the Go monorepo
-local function async_run_gazelle_clean()
-    local monorepo = vim.g.plaidpath .. '/go.git'
-    local filepath = vim.fn.expand('%:p')
-
-    -- only run in the monorepo
-    if not string.match(filepath, '^' .. monorepo) then
-        return
-    end
-
-    -- Spawn the make process asychronously
-    vim.loop.spawn('make', {
-        args = {'-C', monorepo, 'gazelle-on-save', 'FILE=' .. vim.fn.expand('%')},
-        detached = true,
-    }, function(code, signal)
-        -- On exit, display a notification. Needs to be scheduled on the event
-        -- loop because we can't call `vim.notify` in the callback directly.
-        vim.schedule(function()
-            if code == 0 then
-                vim.notify("Gazelle completed successfully", vim.log.levels.INFO)
-            else
-                vim.notify("Gazelle build failed!", vim.log.levels.ERROR)
-            end
-        end)
-    end)
-end
-
--- Create command for gazelle clean so you can call it manually as
--- :GazelleClean
-vim.api.nvim_create_user_command('GazelleClean', async_run_gazelle_clean, {})
-
--- Set up autocommand to run gazelle clean on save
-vim.api.nvim_create_autocmd('BufWritePost', {
-    buffer = 0,
-    callback = async_run_gazelle_clean
-})

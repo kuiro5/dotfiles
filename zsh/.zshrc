@@ -8,11 +8,7 @@ alias g="git"
 # Claude
 alias c="claude --dangerously-skip-permissions"
 
-# ASDF
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-
-# Z
-. /opt/homebrew/etc/profile.d/z.sh
+alias ls="ls -al"
 
 # PATH
 export PATH=$HOME/.local/bin:$PATH
@@ -24,3 +20,6 @@ export PATH=$HOME/.local/bin:$PATH
 fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
 prompt pure
+
+# Load local settings
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

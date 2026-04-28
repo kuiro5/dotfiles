@@ -9,6 +9,8 @@
   email = joshkuiros@gmail.com
 [pull]
   rebase = true
+[push]
+	autoSetupRemote = true
 [color]
   ui = true
 [alias]
@@ -31,3 +33,5 @@
   st=status
   sta=stash save
   stp=stash pop
+[include]
+	path = ~/.gitconfig.local
