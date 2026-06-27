@@ -6,12 +6,13 @@ alias v="nvim"
 alias g="git"
 
 # Claude
-alias c="claude --dangerously-skip-permissions"
+alias c="claude"
+alias cdsp="claude --dangerously-skip-permissions"
 
 alias ls="ls -al"
 
 # PATH
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/go/bin:$HOME/.cargo/env:$PATH
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
