@@ -19,7 +19,7 @@ brew "pure"
 
 # Font for better icon support in bufferline/lualine
 cask "font-hack-nerd-font"
-cask "alacritty", no_quarantine: true
+cask "ghostty"
 cask "alfred"
 cask "spotify"
 cask "meetingbar"

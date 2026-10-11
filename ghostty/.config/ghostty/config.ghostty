@@ -1,0 +1,2 @@
+theme = iTerm2 Solarized Dark
+shell-integration-features = ssh-env,ssh-terminfo

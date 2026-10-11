@@ -75,11 +75,11 @@ verify() {
     "$HOME/.gitconfig"
     "$HOME/.config/nvim/init.lua"
     "$HOME/.tmux.conf"
-    "$HOME/.config/alacritty/alacritty.toml"
+    "$HOME/.config/ghostty/config.ghostty"
   )
   local ok=true
   for f in "${targets[@]}"; do
-    if [[ -L "$f" ]]; then
+    if [[ "$(realpath "$f" 2>/dev/null)" == "$DOTFILES_DIR"/* ]]; then
       echo "  ok: $f"
     else
       echo "  MISSING: $f"
