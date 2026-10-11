@@ -7,6 +7,7 @@ alias g="git"
 
 # Claude
 alias c="claude"
+alias ceam="claude --enable-auto-mode"
 alias cdsp="claude --dangerously-skip-permissions"
 
 alias ls="ls -al"
